@@ -1,4 +1,5 @@
-import tkinter as Tkinter  
+import tkinter as Tkinter 
+import tkinter as tk  
 from datetime import datetime 
 from tkinter import *
 counter1 = 66600
@@ -9,6 +10,9 @@ root = Tkinter.Tk()
 root.title("Stopwatch")      
 root.minsize(width=500, height=140) 
 laps = []
+L =  []
+root = Tk()
+
 
 import time
 #____________________________________________________________________________________________________________________________________________________________________
@@ -138,8 +142,16 @@ b2 = Tkinter.Button(root, text = "Exit",
             command = root.destroy)
 b2.pack(anchor = 'se')
 
+def close_window():
+    global entry
+    entry = E.get()
+    L.append(entry)
+    
 
-
+E = tk.Entry(root)
+E.pack(anchor = CENTER)
+B = Button(root, text = "OK", command = close_window)
+B.pack(anchor = S)
 
 root.mainloop() 
-
+print(L)
