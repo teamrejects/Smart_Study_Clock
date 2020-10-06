@@ -9,7 +9,8 @@ root = Tkinter.Tk()
 root.title("Stopwatch")      
 root.minsize(width=500, height=140) 
 laps = []
-t_counter = 0
+
+import time
 #____________________________________________________________________________________________________________________________________________________________________
 
 
@@ -29,7 +30,7 @@ def counter_label1(label1):  #clock1
     def count1():  
         if running1:  
             global counter1    
-            if counter1==66600:              
+            if counter1==0:              
                 display1=""
             else: 
                 tt1 = datetime.fromtimestamp(counter1) 
@@ -71,22 +72,17 @@ break_time()
 
 
 
-
 #CLOCK2
 def counter_label(label):    #clock2
     def count():  
         if running:  
-            global counter    
-            if counter==66600:              
-                display=""
-            else: 
-                tt = datetime.fromtimestamp(counter) 
-                string = tt.strftime("%H:%M:%S") 
-                display=string  
-    
+            global counter
+            tt = datetime.fromtimestamp(counter+120) # T = time to be added in the timer
+            string = tt.strftime("%H:%M:%S") 
+            display=string  
             label['text']=display   
             label.after(1000, count)   
-            counter += 1
+            counter -= 1
     count()       
 def Start(label):            #start button of clock2 and stop button of clock2
     global running 
@@ -145,5 +141,5 @@ b2.pack(anchor = 'se')
 
 
 
-
 root.mainloop() 
+
