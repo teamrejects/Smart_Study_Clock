@@ -8,6 +8,20 @@ running = False
 root = Tkinter.Tk()  
 root.title("Stopwatch")      
 root.minsize(width=500, height=140) 
+laps = []
+t_counter = 0
+#____________________________________________________________________________________________________________________________________________________________________
+
+
+# STUDY TIME TEXT
+def study_time():
+    T1 = Tkinter.Text(root, height = 1, width = 11)  
+    Fact1 = """Study Time"""
+    T1.insert(Tkinter.END, Fact1)
+    T1.pack(anchor = 'w') 
+    T1.configure(state="disabled")
+study_time()
+
 
 
 #CLOCK1
@@ -35,13 +49,26 @@ def Start1(label1):          #start button of clock 1 and stop button of clock2
     counter_label1(label1)  
     start1['state']='disabled'
     start['state']='normal'
-    
+
+# CLOCK1 ATTRIBUTES
 label1 = Tkinter.Label(root, text="00:00:00", fg="black", font="Verdana 30 bold")  
 label1.pack(anchor = 'w')  
 f = Tkinter.Frame(root) 
 start1 = Tkinter.Button(f, text='Start', width=6, command=lambda:Start1(label1))  
 f.pack(anchor = 'w',pady=5) 
 start1.pack(side="left")  
+
+
+
+# BREAK TIME TEXT
+def break_time():
+    T = Tkinter.Text(root, height = 1, width = 11)  
+    Fact = """Break Time"""
+    T.insert(Tkinter.END, Fact)
+    T.pack(anchor = 'w')  
+    T.configure(state="disabled") 
+break_time()
+
 
 
 #CLOCK2
@@ -69,159 +96,50 @@ def Start(label):            #start button of clock2 and stop button of clock2
     start['state']='disabled'
     start1['state']='normal'
  
+# CLOCK2 ATTRIBUTES
 label = Tkinter.Label(root, text="00:00:00", fg="black", font="Verdana 30 bold")  
 label.pack(anchor = 'w')  
 f = Tkinter.Frame(root) 
-start = Tkinter.Button(f, text='Redeem', width=6, command=lambda:Start(label))  
+start = Tkinter.Button(f, text='Redeem ', width=6, command=lambda:Start(label))  
 f.pack(anchor = 'w',pady=5) 
 start.pack(side="left")  
 
-Checkbutton1 = IntVar()   
-Checkbutton2 = IntVar()   
-Checkbutton3 = IntVar() 
-Button1 = Checkbutton(root, text = "Checklist1",  
-                      variable = Checkbutton1, 
-                      onvalue = 1, 
-                      offvalue = 0, 
-                      height = 2, 
-                      width = 10) 
-  
-Button2 = Checkbutton(root, text = "Checklist2", 
-                      variable = Checkbutton2, 
-                      onvalue = 1, 
-                      offvalue = 0, 
-                      height = 2, 
-                      width = 10) 
-  
-Button3 = Checkbutton(root, text = "Checklist3", 
-                      variable = Checkbutton3, 
-                      onvalue = 1, 
-                      offvalue = 0, 
-                      height = 2, 
-                      width = 10)   
-    
-Button1.pack(anchor = "w")   
-Button2.pack(anchor = "w")   
-Button3.pack(anchor = "w")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# CHECKLIST
+def checklists():
+    Checkbutton1 = IntVar()   
+    Checkbutton2 = IntVar()   
+    Checkbutton3 = IntVar() 
+    Button1 = Checkbutton(root, text = "Checklist1",  
+                        variable = Checkbutton1, 
+                        onvalue = 1, 
+                        offvalue = 0, 
+                        height = 2, 
+                        width = 10)  
+    Button2 = Checkbutton(root, text = "Checklist2", 
+                        variable = Checkbutton2, 
+                        onvalue = 1, 
+                        offvalue = 0, 
+                        height = 2, 
+                        width = 10)   
+    Button3 = Checkbutton(root, text = "Checklist3", 
+                        variable = Checkbutton3, 
+                        onvalue = 1, 
+                        offvalue = 0, 
+                        height = 2, 
+                        width = 10)       
+    Button1.pack(anchor = "w")   
+    Button2.pack(anchor = "w")   
+    Button3.pack(anchor = "w")
+checklists()
+
+
+
+# EXIT BUTTON
+b2 = Tkinter.Button(root, text = "Exit", 
+            command = root.destroy)
+b2.pack(anchor = 'se')
 
 
 
