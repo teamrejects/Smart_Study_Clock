@@ -8,10 +8,10 @@ counter = 66600
 running = False
 root = Tkinter.Tk()  
 root.title("Stopwatch")      
-root.minsize(width=500, height=140) 
+root.minsize(width=350, height=550) 
 laps = []
 L =  []
-root = Tk()
+ 
 import time
 
 #____________________________________________________________________________________________________________________________________________________________________
@@ -146,7 +146,7 @@ def close_window():
     L.append(entry)
     
 
-E = tk.Entry(root , highlightthickness = 0 ,borderwidth=0)
+E = Tkinter.Entry(root , highlightthickness = 0 ,borderwidth=0)
 E.pack(anchor = CENTER)
 B = Button(root, text = "Enter the websites \n that distract you.", command = close_window )
 B.pack(anchor = S)
@@ -154,7 +154,6 @@ B.pack(anchor = S)
 
 #bugs / features to be added
 # the stopwatch and timer should only work if websites to be blocked have been entered 
-# two windoes are opening one of them is empty gotta fix that
 # when the timer runs out it starts from 23:59:59 , instead when timer times out (counter = 66600) then study clock should start
 # we need to make a button to add more checklists
 
@@ -165,3 +164,4 @@ b2 = Tkinter.Button(root, text = "Exit",
 b2.pack(anchor = 'se')
 root.mainloop() 
 print(L)
+
