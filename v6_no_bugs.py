@@ -12,22 +12,21 @@ root.minsize(width=500, height=140)
 laps = []
 L =  []
 root = Tk()
-
-
 import time
+
 #____________________________________________________________________________________________________________________________________________________________________
 
 
 # STUDY TIME TEXT
-def study_time():
-    T1 = Tkinter.Text(root, height = 1, width = 11)  
-    Fact1 = """Study Time"""
+def study_time(text):
+    T1 = Tkinter.Text(root, height = 1, width = 13 , highlightthickness = 0 ,borderwidth=0)  
+    Fact1 = text
     T1.insert(Tkinter.END, Fact1)
     T1.pack(anchor = 'w') 
     T1.configure(state="disabled")
-study_time()
+study_time("Study Clock :")
 
-
+"complete checklists! to get more break time to browse the blocked websites =>"
 
 #CLOCK1
 def counter_label1(label1):  #clock1
@@ -66,13 +65,13 @@ start1.pack(side="left")
 
 
 # BREAK TIME TEXT
-def break_time():
-    T = Tkinter.Text(root, height = 1, width = 11)  
-    Fact = """Break Time"""
+def break_time(text):
+    T = Tkinter.Text(root, height = 1, width = 13 , highlightthickness = 0 ,borderwidth=0)  
+    Fact = text
     T.insert(Tkinter.END, Fact)
     T.pack(anchor = 'w')  
     T.configure(state="disabled") 
-break_time()
+break_time("Break Timer :")
 
 
 
@@ -98,14 +97,20 @@ def Start(label):            #start button of clock2 and stop button of clock2
     start1['state']='normal'
  
 # CLOCK2 ATTRIBUTES
-label = Tkinter.Label(root, text="00:00:00", fg="black", font="Verdana 30 bold")  
+label = Tkinter.Label(root, text="00:00:00", fg="black", font="Verdana 30 bold" )  
 label.pack(anchor = 'w')  
 f = Tkinter.Frame(root) 
 start = Tkinter.Button(f, text='Redeem ', width=6, command=lambda:Start(label))  
 f.pack(anchor = 'w',pady=5) 
 start.pack(side="left")  
 
-
+def checklist_Text(text):
+    T1 = Tkinter.Text(root, height = 2, width = 44 , highlightthickness = 0 ,borderwidth=0)  
+    Fact1 = text
+    T1.insert(Tkinter.END, Fact1)
+    T1.pack(anchor = 'w') 
+    T1.configure(state="disabled")
+checklist_Text("Complete Checklists! to get more break time\nto browse the blocked websites =>")
 
 # CHECKLIST
 def checklists():
@@ -135,23 +140,28 @@ def checklists():
     Button3.pack(anchor = "w")
 checklists()
 
-
-
-# EXIT BUTTON
-b2 = Tkinter.Button(root, text = "Exit", 
-            command = root.destroy)
-b2.pack(anchor = 'se')
-
 def close_window():
     global entry
     entry = E.get()
     L.append(entry)
     
 
-E = tk.Entry(root)
+E = tk.Entry(root , highlightthickness = 0 ,borderwidth=0)
 E.pack(anchor = CENTER)
-B = Button(root, text = "OK", command = close_window)
+B = Button(root, text = "Enter the websites \n that distract you.", command = close_window )
 B.pack(anchor = S)
 
+
+#bugs / features to be added
+# the stopwatch and timer should only work if websites to be blocked have been entered 
+# two windoes are opening one of them is empty gotta fix that
+# when the timer runs out it starts from 23:59:59 , instead when timer times out (counter = 66600) then study clock should start
+# we need to make a button to add more checklists
+
+
+# EXIT BUTTON
+b2 = Tkinter.Button(root, text = "Exit", 
+            command = root.destroy)
+b2.pack(anchor = 'se')
 root.mainloop() 
 print(L)
