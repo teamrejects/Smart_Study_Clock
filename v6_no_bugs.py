@@ -7,7 +7,7 @@ running1 = False
 counter = 66600
 running = False
 root = Tkinter.Tk()  
-root.title("Stopwatch")      
+root.title("ARK CS project")      
 root.minsize(width=350, height=550) 
 laps = []
 L =  []
@@ -53,12 +53,13 @@ def Start1(label1):          #start button of clock 1 and stop button of clock2
     counter_label1(label1)  
     start1['state']='disabled'
     start['state']='normal'
+    b1['state']='normal'
 
 # CLOCK1 ATTRIBUTES
 label1 = Tkinter.Label(root, text="00:00:00", fg="black", font="Verdana 30 bold")  
 label1.pack(anchor = 'w')  
 f = Tkinter.Frame(root) 
-start1 = Tkinter.Button(f, text='Start', width=6, command=lambda:Start1(label1))  
+start1 = Tkinter.Button(f, text='Start', width=6, command=lambda:Start1(label1),state='normal')  
 f.pack(anchor = 'w',pady=5) 
 start1.pack(side="left")  
 
@@ -95,12 +96,13 @@ def Start(label):            #start button of clock2 and stop button of clock2
     counter_label(label)  
     start['state']='disabled'
     start1['state']='normal'
+    b1['state']='disabled'
  
 # CLOCK2 ATTRIBUTES
-label = Tkinter.Label(root, text="00:00:00", fg="black", font="Verdana 30 bold" )  
+label = Tkinter.Label(root, text="00:00:00", fg="blue", font="Verdana 30 bold" )  
 label.pack(anchor = 'w')  
 f = Tkinter.Frame(root) 
-start = Tkinter.Button(f, text='Redeem ', width=6, command=lambda:Start(label))  
+start = Tkinter.Button(f, text='Redeem ', width=6, command=lambda:Start(label),state='disabled')  
 f.pack(anchor = 'w',pady=5) 
 start.pack(side="left")  
 
@@ -149,7 +151,7 @@ def checklists():
         limit2()
         limit3()
     
-    b1=Tkinter.Button(fc,text="update",command=info,bg="yellow",state=Tkinter.NORMAL)
+    b1=Tkinter.Button(fc,text="update",command=info,bg="yellow",state='disabled')
     b1.grid(row=3,column=1)
 
 
