@@ -114,30 +114,46 @@ checklist_Text("Complete Checklists! to get more break time\nto browse the block
 
 # CHECKLIST
 def checklists():
-    Checkbutton1 = IntVar()   
-    Checkbutton2 = IntVar()   
-    Checkbutton3 = IntVar() 
-    Button1 = Checkbutton(root, text = "Checklist1",  
-                        variable = Checkbutton1, 
-                        onvalue = 1, 
-                        offvalue = 0, 
-                        height = 2, 
-                        width = 10)  
-    Button2 = Checkbutton(root, text = "Checklist2", 
-                        variable = Checkbutton2, 
-                        onvalue = 1, 
-                        offvalue = 0, 
-                        height = 2, 
-                        width = 10)   
-    Button3 = Checkbutton(root, text = "Checklist3", 
-                        variable = Checkbutton3, 
-                        onvalue = 1, 
-                        offvalue = 0, 
-                        height = 2, 
-                        width = 10)       
-    Button1.pack(anchor = "w")   
-    Button2.pack(anchor = "w")   
-    Button3.pack(anchor = "w")
+    fc=Tkinter.Frame(root)
+    var1 = Tkinter.IntVar()
+    var2 = Tkinter.IntVar()
+    var3 = Tkinter.IntVar()
+    chk1 = Tkinter.Checkbutton(fc, text='1st', variable=var1)
+    chk2 = Tkinter.Checkbutton(fc, text='2nd', variable=var2)
+    chk3 = Tkinter.Checkbutton(fc, text='3rd', variable=var3)
+    chk1.grid(row=0,column=0)
+    chk2.grid(row=1,column=0)
+    chk3.grid(row=2,column=0)
+
+    def info():
+        n1=var1.get()
+        n2=var2.get()
+        n3=var3.get()
+        def limit1():
+            if n1==1:
+                Tkinter.Label(fc,text=" 1st  checked",fg="green").grid(row=0,column=1)
+            else:
+                Tkinter.Label(fc,text="1st unchecked",fg="red").grid(row=0,column=1)
+                print
+        def limit2():
+            if n2==1:
+                Tkinter.Label(fc,text=" 2nd  checked",fg="green").grid(row=1,column=1)
+            else:
+                Tkinter.Label(fc,text="2nd unchecked",fg="red").grid(row=1,column=1)
+        def limit3():
+            if n3==1:
+                Tkinter.Label(fc,text=" 3rd  checked",fg="green").grid(row=2,column=1)
+            else:
+                Tkinter.Label(fc,text="3rd unchecked",fg="red").grid(row=2,column=1)
+        limit1()
+        limit2()
+        limit3()
+    
+    b1=Tkinter.Button(fc,text="update",command=info,bg="yellow",state=Tkinter.NORMAL)
+    b1.grid(row=3,column=1)
+
+
+    fc.pack(anchor='sw')
 checklists()
 
 def close_window():
@@ -156,7 +172,14 @@ B.pack(anchor = S)
 # the stopwatch and timer should only work if websites to be blocked have been entered 
 # when the timer runs out it starts from 23:59:59 , instead when timer times out (counter = 66600) then study clock should start
 # we need to make a button to add more checklists
-
+# the stopwatch and timer should only work if websites to be blocked have been entered 
+# when the timer runs out it starts from 23:59:59 , instead when timer times out (counter = 66600) then study clock should start
+# we need to make a button to add more checklists
+# disable update button when redeem timer is going on
+# everytime the checklist button is clicked , we lap the time it took to click that button in reference to study clock 
+# then 1/3 of the study clock lap time is added to break timer
+# if checkbox gets checked it should not be able to get unchecked
+#the checklist should be updated on clikcing so no update button should be required
 
 # EXIT BUTTON
 b2 = Tkinter.Button(root, text = "Exit", 
@@ -164,4 +187,3 @@ b2 = Tkinter.Button(root, text = "Exit",
 b2.pack(anchor = 'se')
 root.mainloop() 
 print(L)
-
