@@ -4,7 +4,7 @@ This app blocks the distractive websites entered during study time and completin
 
 What I learned :
 GUI implementation using Tkinter
-implementing Timer and Stopwatch
+implementing Timer and Stopwatch 
 Python Functions and Data Structures
 
 
