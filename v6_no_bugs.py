@@ -129,12 +129,25 @@ def checklists():
     var1 = Tkinter.IntVar()
     var2 = Tkinter.IntVar()
     var3 = Tkinter.IntVar()
-    chk1 = Tkinter.Checkbutton(fc, text='1st', variable=var1)
-    chk2 = Tkinter.Checkbutton(fc, text='2nd', variable=var2)
-    chk3 = Tkinter.Checkbutton(fc, text='3rd', variable=var3)
+    def click1():
+        chk1.config(state=DISABLED)
+    def click2():
+        chk2.config(state=DISABLED)
+    def click3():
+        chk3.config(state=DISABLED)    
+    chk1 = Tkinter.Checkbutton(fc, text='1st', variable=var1, command=click1)
+    chk2 = Tkinter.Checkbutton(fc, text='2nd', variable=var2, command=click2)
+    chk3 = Tkinter.Checkbutton(fc, text='3rd', variable=var3, command=click3)
     chk1.grid(row=0,column=0)
     chk2.grid(row=1,column=0)
     chk3.grid(row=2,column=0)
+    
+
+    
+        
+
+
+    
 
     def info():
         n1=var1.get()
