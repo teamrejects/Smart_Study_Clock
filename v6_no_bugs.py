@@ -2,9 +2,9 @@ import tkinter as Tkinter
 import tkinter as tk  
 from datetime import datetime 
 from tkinter import *
-counter1 = 66600
+counter1 = 0
 running1 = False
-counter = 66600
+counter = 0
 running = False
 root = Tkinter.Tk()  
 root.title("ARK CS")      
@@ -41,7 +41,7 @@ def counter_label1(label1 , t_counter):  #clock1
             if counter1==0:              
                 display1=""
             else: 
-                tt1 = datetime.fromtimestamp(counter1) 
+                tt1 = datetime.utcfromtimestamp(counter1) 
                 
                 string1 = tt1.strftime( "%H:%M:%S") 
                 display1=string1  
@@ -89,7 +89,7 @@ def counter_label(label , T):    #clock2
     def count():  
         if running:  
             global counter
-            tt = datetime.fromtimestamp(counter+T) # T = time to be added in the timer
+            tt = datetime.utcfromtimestamp(counter+T) # T = time to be added in the timer
             string = tt.strftime("%H:%M:%S") 
             display=string  
             label['text']=display   
@@ -265,3 +265,4 @@ root.mainloop()
 #disable update button when redeem timer is going on
 # list only updates when exit button is clicked , it should update when submit button is clicked
 # stop watch should start if timer reaches 00:00:00
+#checklist should be editable
