@@ -129,60 +129,68 @@ def checklists():
     var1 = Tkinter.IntVar()
     var2 = Tkinter.IntVar()
     var3 = Tkinter.IntVar()
-    def click1():
-        chk1.config(state=DISABLED)
-    def click2():
-        chk2.config(state=DISABLED)
-    def click3():
-        chk3.config(state=DISABLED)    
-    chk1 = Tkinter.Checkbutton(fc, text='1st', variable=var1, command=click1)
-    chk2 = Tkinter.Checkbutton(fc, text='2nd', variable=var2, command=click2)
-    chk3 = Tkinter.Checkbutton(fc, text='3rd', variable=var3, command=click3)
+    
+    def info1():
+        n1=var1.get()
+        def limit1():
+            if n1==1:
+                t_list.append(t_counter)
+                calc_T(t_list)
+        def click1():
+            chk1.config(state=DISABLED)
+        limit1()
+        click1()
+        
+    def info2():
+        n2=var2.get()               
+        def limit2():
+            if n2==1:
+                t_list.append(t_counter)
+                calc_T(t_list)
+        def click2():
+            chk2.config(state=DISABLED)
+        limit2()
+        click2()
+    def info3():
+        n3=var3.get()
+        def limit3():
+            if n3==1:
+                t_list.append(t_counter)
+                calc_T(t_list)
+        def click3():
+            chk3.config(state=DISABLED)
+        limit3()
+        click3() 
+
+
+
+
+
+
+    chk1 = Tkinter.Checkbutton(fc, text='1st', variable=var1, command=info1)
+    chk2 = Tkinter.Checkbutton(fc, text='2nd', variable=var2, command=info2)
+    chk3 = Tkinter.Checkbutton(fc, text='3rd', variable=var3, command=info3)
     chk1.grid(row=0,column=0)
     chk2.grid(row=1,column=0)
     chk3.grid(row=2,column=0)
     
 
-    
-        
-
-
-    
-
-    def info():
-        n1=var1.get()
-        n2=var2.get()
-        n3=var3.get()
-        def limit1():
-            if n1==1:
-                t_list.append(t_counter)
-                calc_T(t_list)
-            
-        def limit2():
-            if n2==1:
-                t_list.append(t_counter)
-                calc_T(t_list)
-
-        def limit3():
-            if n3==1:
-                t_list.append(t_counter)
-                calc_T(t_list)
-        limit1()
-        limit2()
-        limit3()
-    
-    b1=Tkinter.Button(fc,text="update",command=info,bg="yellow",state=Tkinter.NORMAL)
-    b1.grid(row=3,column=1)
-
-
     fc.pack(anchor='sw')
 checklists()
+
+
+
+
+
 
 def close_window():
     global entry
     entry = E.get()
     L.append(entry)
-    
+
+
+
+
 
 def calc_T(t_list ):
     t_list2 = []
@@ -193,6 +201,8 @@ def calc_T(t_list ):
         T = T + t_list2[ele]
     
     return T 
+
+
 
 E = Tkinter.Entry(root , highlightthickness = 0 ,borderwidth=0)
 E.pack(anchor = CENTER)
