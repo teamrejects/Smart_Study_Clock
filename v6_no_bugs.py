@@ -6,18 +6,22 @@ counter1 = 0
 running1 = False
 counter = 0
 running = False
-root = Tkinter.Tk()  
-root.title("ARK CS")      
+root = Tkinter.Tk()      
 root.minsize(width=350, height=550) 
 laps = []
 L =  []
 t_counter = 0
 import time
-t_list = []
+t_list = [0]
 r=[]
 T = 0
 t_list2 = []
-#____________________________________________________________________________________________________________________________________________________________________
+i=0
+import tkinter.messagebox
+
+#____________________
+var2 = t_counter
+var3 = counter 
 
 
 
@@ -83,20 +87,33 @@ def break_time(text):
 break_time("Break Timer :")
 
 
-
+k = 0
 #CLOCK2
 def counter_label(label , T):    #clock2
     def count():  
         if running:  
             global counter
+            i = 0   
+            
             tt = datetime.utcfromtimestamp(counter+T) # T = time to be added in the timer
             string = tt.strftime("%H:%M:%S") 
             display=string  
             label['text']=display   
             label.after(1000, count)   
-            counter -= 1
-            if counter == 66600:
-                Start1(label1)
+            if counter+T-1 >= 0:
+                counter -= 1
+                if counter+T<1 :
+                    
+                    tkinter.messagebox.showinfo('Alert!','Your earned break time is over and the websites have been blocked , please start the study clock to earn more break time.')
+                    
+                
+                
+                   
+                
+                
+            
+ 
+
     count()       
 def Start(label):            #start button of clock2 and stop button of clock2
     global running 
@@ -114,7 +131,7 @@ f = Tkinter.Frame(root)
 start = Tkinter.Button(f, text='Redeem ', width=6, command=lambda:Start(label))  
 f.pack(anchor = 'w',pady=5) 
 start.pack(side="left")  
-
+t_list.append(0)
 def checklist_Text(text):
     T1 = Tkinter.Text(root, height = 2, width = 44 , highlightthickness = 0 ,borderwidth=0)  
     Fact1 = text
@@ -161,25 +178,29 @@ def checklists():
             chk3.config(state=DISABLED)
         limit3()
         click3() 
-
-
-
-
-
-
-    chk1 = Tkinter.Checkbutton(fc, text='1st', variable=var1, command=info1)
+   
+    chk1 = Tkinter.Checkbutton(fc, text="1st", variable=var1, command=info1)
     chk2 = Tkinter.Checkbutton(fc, text='2nd', variable=var2, command=info2)
     chk3 = Tkinter.Checkbutton(fc, text='3rd', variable=var3, command=info3)
-    chk1.grid(row=0,column=0)
-    chk2.grid(row=1,column=0)
-    chk3.grid(row=2,column=0)
+    chk1.grid(row=1,column=0)
+    chk2.grid(row=2,column=0)
+    chk3.grid(row=3,column=0)
+
+    t = Tkinter.Text(fc)
+    t.insert(1.0,"ABCDEF")
+    t.grid(row =1 ,column = 1)
+
+
+    fc.pack(anchor='sw') 
     
 
-    fc.pack(anchor='sw')
+
 checklists()
 
 
 
+def pop_up():
+    tkinter.messagebox.showinfo('Alert!','Your earned break time is over and the websites have been blocked , please start the study clock to earn more break time.')
 
 
 
@@ -187,6 +208,7 @@ def close_window():
     global entry
     entry = E.get()
     L.append(entry)
+    
 
 
 
@@ -215,77 +237,25 @@ b2 = Tkinter.Button(root, text = "Exit",
 b2.pack(anchor = 'se')
 root.mainloop()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#the checklist should be updated on clikcing so no update button should be required
-#if checkbox gets checked it should not be able to get unchecked
-
-
-
-
-
-
-
-#bugs / features to be added
-
-# the stopwatch and timer should only work if websites to be blocked have been entered 
-#disable update button when redeem timer is going on
-# list only updates when exit button is clicked , it should update when submit button is clicked
-# stop watch should start if timer reaches 00:00:00
-#checklist should be editable
+def insert_record(s,t_counter,counter):
+    import mysql.connector
+    str1 = " , " 
+    a = str1.join(s)
+    mydb=mysql.connector.connect(host="localhost",user="root",passwd="anee",database="smart_study_clock")
+    mycursor=mydb.cursor()
+    mycursor.execute("INSERT INTO study_clock VALUES (%s, %s, %s)", (a,t_counter,abs(counter)))
+    mydb.commit()
+
+insert_record(L,t_counter,counter)
+
+
+
+"""to make this app usable :
+checklists should be editable only once 
+add more checklists
+websites should get blocked when study timer is running
+websites should get unblocked when break timer is running
+gui should be better
+there should be a integrated table in the app which shows websites entered and time studied and break time
+this app should be a .exe file that has sql integrated(that file should be opened with administrator privelleges)
+deploy the code as an .exe app which consists of website blocker and a previous activity table"""
